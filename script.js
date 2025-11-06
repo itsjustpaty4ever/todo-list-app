@@ -18,6 +18,8 @@ function addTask(event){
     let checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.id = "checkbox" + todoList.childElementCount;
+    //add event listener
+    checkbox.addEventListener("change", removeTask);
 
     //create label
     let label = document.createElement("label");
@@ -33,13 +35,20 @@ function addTask(event){
     //append list item item div to list
     todoList.appendChild(listDiv);
 
-    //add event listener
-    checkbox.addEventListener('change', removeTask);
-
     
 }
 
 function removeTask(event){
     //getting the checkboxes id
     let checkboxID = event.target.id;
+
+    //get numbers id from the checkboxes id
+    let idNum = checkboxID.substring(8);
+
+
+    //get the task by id
+    let taskDiv = document.getElementById("task"+ idNum)
+
+    //remove the task div from layout
+    taskDiv.remove();
 }
